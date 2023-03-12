@@ -13,6 +13,10 @@ export const MainLayout = () => {
         <Link to='/'>Landing</Link>
         <Link to='/dashboard'>Dashboard</Link>
         <Link to='/calendar'>Calendar</Link>
+        <Link className='peer' to='/movies'>Movies</Link>
+        <div className='hidden peer-hover:block'>
+          hi
+        </div>
         <Link className='bg-sky-500 px-4 py-2 rounded-md' to='/login'>Log In</Link>
         <button onClick={handleLogout} className='bg-sky-500 px-4 py-2 rounded-md'>
           Log Out

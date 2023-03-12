@@ -10,6 +10,7 @@ import {
 
 import { PrivateRoutes } from './PrivateRoutes'
 import { PublicRoutes } from './PublicRoutes'
+import { MoviesRoutes } from './MoviesRoutes'
 
 import { MainLayout } from '../layouts/MainLayout'
 
@@ -29,17 +30,18 @@ export const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route element={<MainLayout />}>
+      <Route path='/' element={<MainLayout />}>
 
-        <Route path='/' element={<Landing />} />
+        <Route index element={<Landing />} />
 
         <Route element={<PrivateRoutes auth={auth} />}>
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/calendar' element={<Calendar />} />
+          <Route path='dashboard' element={<Dashboard />} />
+          <Route path='calendar' element={<Calendar />} />
+          <Route path='movies/*' element={<MoviesRoutes />} />
         </Route>
 
         <Route element={<PublicRoutes auth={auth} />}>
-          <Route path='/login' element={<Login />} />
+          <Route path='login' element={<Login />} />
         </Route>
 
       </Route>
