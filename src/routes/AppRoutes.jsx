@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import {
   Landing,
   Dashboard,
-  Login
+  Login,
+  Calendar
 } from '../pages'
 
 import { PrivateRoutes } from './PrivateRoutes'
@@ -15,8 +16,16 @@ import { MainLayout } from '../layouts/MainLayout'
 import { authState } from '../atoms/auth.atom'
 import { useRecoilState } from 'recoil'
 
+import { useAuth } from '../hooks/useAuth'
+
 export const AppRoutes = () => {
   const [auth] = useRecoilState(authState)
+
+  const { handleRecoverSession } = useAuth()
+
+  useEffect(() => {
+    handleRecoverSession()
+  }, [])
 
   return (
     <Routes>
@@ -26,6 +35,7 @@ export const AppRoutes = () => {
 
         <Route element={<PrivateRoutes auth={auth} />}>
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/calendar' element={<Calendar />} />
         </Route>
 
         <Route element={<PublicRoutes auth={auth} />}>
